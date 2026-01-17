@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback Form</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>"></script>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+        <div class="navdiv">
+            <div class="logo">
+                <a herf="#">ECO PEACE</a>
+            </div>
+            <ul class="navbar">
+                <li><a href="index.html">The Environment</a></li>
+                <li><a href="air.html">Air Pollution</a></li>
+                <li><a href="water.html">Water Poluution</a></li>
+                <li><a href="land.html">Land Pollution</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+             </ul>
+        </div>
+    </nav> 
+    </header>
+<br>
+
+<img src="image/solu.jpg">
+<br>
+
+<div id="app">
+  <h1>Feedback Forum</h1>
+  <!-- Form to submit comments -->
+  <form @submit.prevent="submitComment">
+    <textarea v-model="newComment" placeholder="Enter your comment"></textarea><br>
+    <button type="submit">Submit</button>
+  </form>
+  <hr>
+  <!-- Display comments -->
+  <div v-if="comments.length">
+    <h2>Comments</h2>
+    <div class="comment" v-for="(comment, index) in comments" :key="index">
+      {{ comment }}
+    </div>
+  </div>
+  <div v-else>
+    <p>No comments yet.</p>
+  </div>
+</div>
+
+<!-- Vue.js CDN -->
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<script>
+  // Vue.js app
+  const app = Vue.createApp({
+    data() {
+      return {
+        newComment: '', // Holds the new comment entered by the user
+        comments: [ // Initial comments
+          
+        ]
+      };
+    },
+    methods: {
+      submitComment() {
+        if (this.newComment.trim()) {
+          this.comments.push(this.newComment.trim()); // Add new comment to array
+          this.newComment = ''; // Clear the input field
+        }
+      }
+    }
+  });
+
+  app.mount('#app'); // Mount the app on the #app element
+</script>
+
+
+
+
+
+</body>
+</html>
